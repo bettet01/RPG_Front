@@ -1,22 +1,35 @@
 import React from 'react';
-
+import SignUp from './pages/SignUp';
+import Header from './components/Header';
+import About from './pages/About';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
 
 // css
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Container from 'react-bootstrap/Container';
 import './App.css';
 
 function App() {
   return (
-    <div className="container-fluid">
-      <div className="row">
-        <div className="col"></div>
-        <div className="col">Hey Jackie</div>
-        <div className="col"></div>
-      </div>
-      <div className="row">
+<Router>
+<Container>
+    <Header/>
+    <Switch>
+    <Route path="/signup">
+            <SignUp/>
+          </Route>
+    <Route path="/about">
+      <About/>
+    </Route>
+    </Switch>
+</Container>   
 
-      </div>
-    </div>
+</Router> 
   );
 }
 
