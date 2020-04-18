@@ -10,8 +10,8 @@ import "../App.css";
 function About() {
   return (
     <Row>
-      <Col xs={2}></Col>
-      <Col xs={8}>
+      <Col xs={1} lg={2}></Col>
+      <Col xs={12} lg={8}>
         <Row className="justify-content-md-center">
           <h id="description-header">Game Description</h>
         </Row>
@@ -21,7 +21,7 @@ function About() {
           </Card.Text>
         </Card>
       </Col>
-      <Col xs={2}></Col>
+      <Col xs={1} lg={2}></Col>
     </Row>
   );
 }

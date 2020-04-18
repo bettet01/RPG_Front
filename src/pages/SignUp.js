@@ -60,7 +60,7 @@ function SignUp() {
     return (
         <Row className="Row-2">
         <Col></Col>
-        <Col xs={6}>
+        <Col lg={6} md={8}>
           <h1 id="sign-up-col">Sign Up</h1>
         <Form onSubmit={submitData}>
         <Form.Group id="form-group-username">

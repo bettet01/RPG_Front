@@ -11,22 +11,22 @@ import '../App.css';
 function Header() {
     return (
         <Row>
-        <Col xs={3} id="dev-10">
+        <Col lg={3} md={4} xs={4} id="dev-10">
             <Link id="link" to="/">Dev10 Game</Link>
         </Col>
         
-        <Col xs={6}></Col>
-        
-        <Col xs={1} id="header-link">
-            <Link id="link" to="/signup">Sign Up</Link>
-        </Col>
+    <Col lg={6} md={2} xs={1}> </Col>
        
-        <Col xs={1} id="header-link">
+        <Col lg={1} md={2} xs={2} id="header-link">
             <Link id="link" to="/about">About</Link>
         </Col>
 
-        <Col xs={1} id="header-link">
+        <Col lg={1} md={2} xs={2} id="header-link">
             <Link id="link" to="/play">Play</Link>
+        </Col>
+
+        <Col lg={1} md={2} xs={3} id="header-link">
+            <Link id="link" to="/signup">Sign Up</Link>
         </Col>
 
       </Row>
