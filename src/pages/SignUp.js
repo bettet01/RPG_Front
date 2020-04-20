@@ -1,5 +1,7 @@
 import React from "react";
 
+import ErrorMessage from "../components/ErrorMessage";
+
 // css
 import "bootstrap/dist/css/bootstrap.min.css";
 import Row from "react-bootstrap/Row";
@@ -15,6 +17,10 @@ function SignUp() {
     email: "",
     password: "",
     confirmPassword: "",
+  });
+
+  const [errors, setErrors] = React.useState({
+    error: []
   });
 
   React.useEffect(() => {
@@ -89,121 +95,133 @@ function SignUp() {
   };
 
   const submitData = (e) => {
-
     e.preventDefault();
-
+    var newErrors = errors.error;
+    newErrors.splice(0, newErrors.length);
+    setErrors({...errors, error: newErrors});
     if (data.username < 4 || data.username < 16) {
-      //TODO: Add error messages
-      console.log("username error");
-      return;
-    } else if (data.confirmPassword !== data.password) {
-            //TODO: Add error messages
-            console.log("passwords don't match");
-      return;
-    } else if (!/[A-Z]/.test(data.password)) {
-      //TODO: Add error messages
-      console.log("no upper case");
-      return;
-    } else if (!/[a-z]/.test(data.password)) {
-            //TODO: Add error messages
-            console.log("no lower case");
-            return;
-    } else if (!/[0-9]/.test(data.password)) {
-            //TODO: Add error messages
-            console.log("no number");
-            return;
-    } else if (!/[!-*]/.test(data.password)) {
-            //TODO: Add error messages
-            console.log("no special character");
-            return;
-    } else {
-      axios
-        .post("http://localhost:8080/api/users", {
-          username: data.username,
-          email: data.email,
-          password: data.password,
-        })
-        .then((res) => {
-          console.log(res);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+      newErrors.push("Username must be between 4-16 characters");
+      setErrors({...errors, error: newErrors});
     }
+    if (data.confirmPassword !== data.password) {
+      newErrors.push("Passwords Must Match");
+      setErrors({...errors, error: newErrors});
+    }
+    if (!/[A-Z]/.test(data.password)) {
+      newErrors.push("Pasword Must Contain Uppercase");
+      setErrors({...errors, error: newErrors});
+    }
+    if (!/[a-z]/.test(data.password)) {
+      newErrors.push("Password Must Contain Lower Case");
+      setErrors({...errors, error: newErrors});
+    }
+    if (!/[0-9]/.test(data.password)) {
+      newErrors.push("Password Must Contain Number");
+      setErrors({...errors, error: newErrors});
+    }
+    if (!/[!-*]/.test(data.password)) {
+      newErrors.push("Password Must Contain Special Character");
+      setErrors({...errors, error: newErrors});
+    }
+
+    if (errors.error.length > 0) {
+      console.log(errors);
+      return;
+    }
+    axios
+      .post("http://localhost:8080/api/users", {
+        username: data.username,
+        email: data.email,
+        password: data.password,
+      })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return (
-        <Row className="Row-2">
+    <div>
+      <ErrorMessage messages={errors.error} />
+      <Row className="Row-2">
         <Col></Col>
         <Col lg={6} md={8}>
           <h1 id="sign-up-col">Sign Up</h1>
-        <Form onSubmit={submitData}>
-        <Form.Group id="form-group-username">
-            <Form.Label id="label">
-            Username</Form.Label>
-            <Form.Control onChange={changeUsername} value={data.username} id="form-control-username" type="username" placeholder="Username" />
-            <Form.Text id="form-text-username"> 
-              <span id="span-4-characters"> 4-16 Characters</span> |
-              <span id="span-no-special"> No Special Characters</span>
-            </Form.Text>
-          </Form.Group>
+          <Form onSubmit={submitData}>
+            <Form.Group id="form-group-username">
+              <Form.Label id="label">Username</Form.Label>
+              <Form.Control
+                onChange={changeUsername}
+                value={data.username}
+                id="form-control-username"
+                type="username"
+                placeholder="Username"
+              />
+              <Form.Text id="form-text-username">
+                <span id="span-4-characters"> 4-16 Characters</span> |
+                <span id="span-no-special"> No Special Characters</span>
+              </Form.Text>
+            </Form.Group>
 
-          <Form.Group id="form-group-email">
-            <Form.Label id="label">Email address</Form.Label>
-            <Form.Control
-              onChange={changeEmail}
-              value={data.email}
-              id="form-control-email"
-              placeholder="Email"
-            />
-          </Form.Group>
+            <Form.Group id="form-group-email">
+              <Form.Label id="label">Email address</Form.Label>
+              <Form.Control
+                onChange={changeEmail}
+                value={data.email}
+                id="form-control-email"
+                placeholder="Email"
+              />
+            </Form.Group>
 
-          <Form.Group id="form-group-password">
-            <Form.Label id="label">Password</Form.Label>
-            <Form.Control
-              onChange={changePassword}
-              value={data.password}
-              id="form-control-password"
-              type="password"
-              placeholder="Password"
-            />
-            <Form.Text id="form-text-password" className="form-text">
-              <span id="span-uppercase"> 1 Uppercase Letter</span> |
-              <span id="span-lowercase"> 1 Lowercase Letter</span> |
-              <span id="span-number"> 1 Number</span> |
-              <span id="span-special"> 1 Special Character</span>
-            </Form.Text>
-          </Form.Group>
+            <Form.Group id="form-group-password">
+              <Form.Label id="label">Password</Form.Label>
+              <Form.Control
+                onChange={changePassword}
+                value={data.password}
+                id="form-control-password"
+                type="password"
+                placeholder="Password"
+              />
+              <Form.Text id="form-text-password" className="form-text">
+                <span id="span-uppercase"> 1 Uppercase Letter</span> |
+                <span id="span-lowercase"> 1 Lowercase Letter</span> |
+                <span id="span-number"> 1 Number</span> |
+                <span id="span-special"> 1 Special Character</span>
+              </Form.Text>
+            </Form.Group>
 
-          <Form.Group id="form-group-password">
-            <Form.Label id="label">Confirm Password</Form.Label>
-            <Form.Control
-              onChange={changeConfirmPassword}
-              value={data.confirmPassword}
-              id="form-control--confirm-password"
-              type="password"
-              placeholder="Confirm Password"
-            />
-            <Form.Text className="form-text">
-              <span id="span-passwords-match">Passwords Match</span>
-            </Form.Text>
-          </Form.Group>
+            <Form.Group id="form-group-password">
+              <Form.Label id="label">Confirm Password</Form.Label>
+              <Form.Control
+                onChange={changeConfirmPassword}
+                value={data.confirmPassword}
+                id="form-control--confirm-password"
+                type="password"
+                placeholder="Confirm Password"
+              />
+              <Form.Text className="form-text">
+                <span id="span-passwords-match">Passwords Match</span>
+              </Form.Text>
+            </Form.Group>
 
-          <Row className="justify-content-md-center">
-            <Button
-              className="mx-auto"
-              id="submit-button"
-              variant="primary"
-              type="submit"
-              onClick={submitData}
-            >
-              Submit
-            </Button>
-          </Row>
-        </Form>
-      </Col>
-      <Col></Col>
-    </Row>
+            <Row className="justify-content-md-center">
+              <Button
+                className="mx-auto"
+                id="submit-button"
+                variant="primary"
+                type="submit"
+                onClick={submitData}
+              >
+                Submit
+              </Button>
+            </Row>
+          </Form>
+        </Col>
+        <Col></Col>
+      </Row>
+    </div>
   );
 }
 
