@@ -20,6 +20,7 @@ function SignUp() {
   });
 
   const [errors, setErrors] = React.useState({
+    color: "red",
     error: []
   });
 
@@ -96,6 +97,7 @@ function SignUp() {
 
   const submitData = (e) => {
     e.preventDefault();
+    setErrors({...errors, color: "red"});
     var newErrors = errors.error;
     newErrors.splice(0, newErrors.length);
     setErrors({...errors, error: newErrors});
@@ -125,26 +127,36 @@ function SignUp() {
     }
 
     if (errors.error.length > 0) {
-      console.log(errors);
       return;
     }
+
     axios
-      .post("http://localhost:8080/api/users", {
+      .post("https://dev10-game-db.herokuapp.com/api/users", {
         username: data.username,
         email: data.email,
         password: data.password,
       })
       .then((res) => {
-        console.log(res);
+        newErrors.push("User Created Successfully!");
+        setErrors({...errors, error: newErrors});
+        setErrors({...errors, color: "green"});
+        setData({ ...data, username: "",
+        email: "",
+        password: "",
+        confirmPassword: "",
+      });
       })
       .catch((err) => {
-        console.log(err);
+        for (let index = 0; index < err.response.data.errors.length; index++) {
+          newErrors.push(err.response.data.errors[index]);
+          setErrors({...errors, error: newErrors});
+        }
       });
   };
 
   return (
     <div>
-      <ErrorMessage messages={errors.error} />
+      <ErrorMessage messages={errors.error} color={errors.color} />
       <Row className="Row-2">
         <Col></Col>
         <Col lg={6} md={8}>

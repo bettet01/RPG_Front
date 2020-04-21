@@ -8,10 +8,13 @@ import Link from "react-router-dom/Link";
 import "../App.css";
 
 function ErrorMessage(props) {
+	const styleObj = {
+		color: props.color
+	}
      var errorMessages = props.messages.map((message) => <li>{message}</li>);
 
   return (
-	<ul style={{"color": "red"}}>
+	<ul style={styleObj}>
 		{errorMessages}
 	</ul>);
 }
