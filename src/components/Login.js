@@ -11,10 +11,12 @@ import "../App.css";
 function Login() {
   return (
       <Row>
-        <Col>
+        <Col lg={3}></Col>
+        <Col lg={6}>
+        <h1 id="sign-up-col">Log In</h1>
           <Form>
             <Form.Group id="form-group-email">
-              <Form.Label id="label">Email address</Form.Label>
+              <Form.Label id="label">Email Address</Form.Label>
               <Form.Control
                 id="form-control-email"
                 placeholder="Email"
@@ -28,12 +30,6 @@ function Login() {
                 type="password"
                 placeholder="Password"
               />
-              <Form.Text id="form-text-password" className="form-text">
-                <span id="span-uppercase"> 1 Uppercase Letter</span> |
-                <span id="span-lowercase"> 1 Lowercase Letter</span> |
-                <span id="span-number"> 1 Number</span> |
-                <span id="span-special"> 1 Special Character</span>
-              </Form.Text>
             </Form.Group>
 
             <Row className="justify-content-md-center">
@@ -48,6 +44,7 @@ function Login() {
             </Row>
           </Form>
         </Col>
+        <Col lg={3}></Col>
       </Row>
   );
 }

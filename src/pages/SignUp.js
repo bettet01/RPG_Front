@@ -178,7 +178,7 @@ function SignUp() {
             </Form.Group>
 
             <Form.Group id="form-group-email">
-              <Form.Label id="label">Email address</Form.Label>
+              <Form.Label id="label">Email Address</Form.Label>
               <Form.Control
                 onChange={changeEmail}
                 value={data.email}
