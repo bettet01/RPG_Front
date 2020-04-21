@@ -29,6 +29,10 @@ function Header() {
             <Link id="link" to="/signup">Sign Up</Link>
         </Col>
 
+        <Col id="header-link">
+            <Link id="link" to="/login">Log In</Link>
+        </Col>
+
       </Row>
     );
 }
