@@ -95,3 +95,22 @@
   padding-left: 15px;
   padding-right: 15px;
 }
+
+#user-profile {
+  color: white;
+  text-align: center;
+  padding-bottom: 50px;
+  font-size: 20px;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  margin-top: 40px;
+  width: 60%;
+  margin-right: 20%;
+  margin-left: 20%;
+  align-self: center;
+}
+
+Button {
+  color: white;
+  font-size: 20px;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
