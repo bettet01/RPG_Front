@@ -131,7 +131,7 @@ function SignUp() {
     }
 
     axios
-      .post("https://dev10-game-db.herokuapp.com/api/users", {
+      .post("http://localhost:8080/api/users", {
         username: data.username,
         email: data.email,
         password: data.password,
