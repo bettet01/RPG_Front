@@ -3,8 +3,7 @@ import SignUp from "./pages/SignUp";
 import Header from "./components/Header";
 import About from "./pages/About";
 import Play from "./pages/Play";
-import Login from "./components/Login";
-import Deleteuser from "./components/Deleteuser";
+import LoginPage from "./pages/LoginPage"
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 // css
@@ -28,8 +27,7 @@ function App() {
             <SignUp />
           </Route>
           <Route path="/login">
-            <Login />
-            <Deleteuser />
+            <LoginPage />
           </Route>
         </Switch>
       </Container>

@@ -7,14 +7,20 @@ import Row from "react-bootstrap/Row";
 import Button from "react-bootstrap/Button";
 import Table from "react-bootstrap/Table";
 
-function Deleteuser() {
+function Deleteuser(props) {
+
+  const testFunction = (e) => {
+    e.preventDefault();
+    console.log(props.data);
+  }
+
   return (
     <div>
       <Table id="user-profile" variant="dark" bordered>
         <tbody>
           <tr>
             <td>Account Username</td>
-            <td>Account Username Here</td>
+            <td>{props.data.player.charactername}</td>
           </tr>
           <tr>
             <td>Account Email</td>
@@ -32,6 +38,7 @@ function Deleteuser() {
       </Table>
       <Row className="justify-content-md-center">
         <Button
+          onClick={testFunction}
           className="mx-auto"
           id="submit-button"
           variant="danger"
