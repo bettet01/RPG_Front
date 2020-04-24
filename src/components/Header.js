@@ -22,7 +22,7 @@ function Header() {
         </Col>
 
         <Col lg={1} md={2} xs={2} id="header-link">
-            <Link id="link" to="/play">Play</Link>
+            <a id="link" href="http://localhost:8000" >Play</a>
         </Col>
 
         <Col lg={1} md={2} xs={2} id="header-link">

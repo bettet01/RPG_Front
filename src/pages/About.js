@@ -13,7 +13,7 @@ function About() {
       <Col xs={1} lg={2}></Col>
       <Col xs={12} lg={8}>
         <Row className="justify-content-md-center">
-          <h id="description-header">Game Description</h>
+          <h3 id="description-header">Game Description</h3>
         </Row>
         <Card id="card">
           <Card.Text id="card-text">
