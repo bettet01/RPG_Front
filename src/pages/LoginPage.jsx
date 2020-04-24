@@ -28,7 +28,7 @@ function LoginPage() {
   return (
     <div>
       {!data.isAuthenticated && <Login data={data} setData={setData} />}
-      {data.isAuthenticated && <Deleteuser data={data} />}
+      {data.isAuthenticated && <Deleteuser data={data} setData={setData} />}
     </div>
   );
 }

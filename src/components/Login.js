@@ -59,7 +59,7 @@ function Login(props) {
             intelligence: res.data.player.intelligence,
             inventoryitems: res.data.player.inventoryitems,
             maxexp: res.data.player.maxexp,
-            maxhealth: res.data.player.maxexp,
+            maxhealth: res.data.player.maxhealth,
             maxmana: res.data.player.maxmana,
             playerlevel: res.data.player.playerlevel,
             strength: res.data.player.strength,

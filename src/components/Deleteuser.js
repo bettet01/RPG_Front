@@ -1,4 +1,5 @@
 import React from "react";
+import axios from "axios";
 
 // css
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -8,11 +9,14 @@ import Button from "react-bootstrap/Button";
 import Table from "react-bootstrap/Table";
 
 function Deleteuser(props) {
-
   const testFunction = (e) => {
     e.preventDefault();
-    console.log(props.data);
-  }
+    axios
+      .delete("http://localhost:8080/api/users/" + props.data.id)
+      .then(() => {
+        props.setData({...props.data, isAuthenticated: false});
+      });
+  };
 
   return (
     <div>
@@ -24,15 +28,15 @@ function Deleteuser(props) {
           </tr>
           <tr>
             <td>Account Email</td>
-            <td>Account Email Here</td>
+            <td>{props.data.email}</td>
           </tr>
           <tr>
             <td>Account Level</td>
-            <td>Account Level Here</td>
+            <td>{props.data.player.playerlevel}</td>
           </tr>
           <tr>
-            <td>Account Weapons</td>
-            <td>Account Weapons Here</td>
+            <td>Character Coins</td>
+            <td>{props.data.player.coins}</td>
           </tr>
         </tbody>
       </Table>
